@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="tinder.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
     <!-- start cards -->
@@ -56,17 +57,30 @@
       var movies = data.results;
       movies.forEach((movie, i) => {
         $("#tinder--cards").append(`<div class="tinder--card">
-          <img src="https://image.tmdb.org/t/p/original/${movie.poster_path}">
-          <h3>${movie.title}</h3>
-          <p>${movie.overview}</p>
+          <img style="width: 80%;" src="https://image.tmdb.org/t/p/original/${movie.poster_path}">
+          <div class="tinder--content">
+            <h3>${movie.title || movie.name}</h3>
+            <p>${movie.overview}</p>
+            <h2 id="trailer" class="tinder--trailer">Trailer</h2>
+          </div>
+
         </div>`);
       });
       $.getScript("tinder.js", function() {
          // alert("Script loaded but not necessarily executed.");
+      });
+      $("#trailer").on("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("click");
+        console.log(e);
       });
     });
   </script>
   <script src="https://hammerjs.github.io/dist/hammer.min.js" charset="utf-8"></script>
   <!-- <script src="tinder.js" charset="utf-8"></script> -->
   <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+
+  </script>
 </html>
